@@ -88,7 +88,23 @@ function animateFrames() {
     setTimeout(() => requestAnimationFrame(animateFrames), 42);
 }
 
-// ── Landing Three.js ──────────────────────────────────────────
+// ── Typing effect for tagline ────────────────────────────────
+function typeTagline() {
+    const el = document.getElementById('tagline');
+    if (!el) return;
+    const text = 'UI/UX DESIGNER  |  GAME TESTER  |  IT OPERATIONS';
+    let i = 0;
+    el.textContent = '';
+    el.style.borderRight = '2px solid var(--neon-cyan)';
+    const iv = setInterval(() => {
+        el.textContent += text[i++];
+        if (i >= text.length) {
+            clearInterval(iv);
+            // Blink cursor then remove it
+            setTimeout(() => { el.style.borderRight = 'none'; }, 2000);
+        }
+    }, 55);
+}
 let landingScene, landingCamera, landingRenderer, landingParticles;
 
 function initLandingThree() {
@@ -178,10 +194,16 @@ function openRoom(room) {
 
     let html = '';
     if (room === 'education') {
-        html = DATA.education.map(e => `<div class="info-card"><h4>${e.title}</h4><p class="card-sub">${e.sub}</p><p>${e.date}</p><p>${e.desc}</p></div>`).join('');
+        html = DATA.education.map(e => `
+            <div class="info-card anim-card">
+                <h4>${e.title}</h4>
+                <p class="card-sub">${e.sub}</p>
+                <p class="card-date">${e.date}</p>
+                <p>${e.desc}</p>
+            </div>`).join('');
         html += `<div class="cert-header">VERIFIED CERTIFICATIONS</div>`;
         html += DATA.certifications.map(c => `
-            <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="cert-link">
+            <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="cert-link anim-card">
                 <span class="cert-icon">📜</span>
                 <span class="cert-text">${c.title}</span>
                 <span class="cert-arrow">→</span>
@@ -193,7 +215,7 @@ function openRoom(room) {
             const tag = isLink ? `a href="${c.link}" target="_blank" rel="noopener noreferrer"` : 'div';
             const closeTag = isLink ? 'a' : 'div';
             return `
-            <${tag} class="contact-card">
+            <${tag} class="contact-card anim-card">
                 <div class="contact-icon">${c.icon}</div>
                 <div class="contact-info">
                     <div class="contact-type">${c.type}</div>
@@ -205,9 +227,10 @@ function openRoom(room) {
     } else {
         const items = DATA[room] || [];
         html = items.map(i => `
-            <div class="info-card">
+            <div class="info-card anim-card">
                 <h4>${i.title}</h4>
-                <p class="card-sub">${i.sub || ''}</p>
+                ${i.sub ? `<p class="card-sub">${i.sub}</p>` : ''}
+                ${i.date ? `<p class="card-date">${i.date}</p>` : ''}
                 <p>${i.desc}</p>
                 ${i.link ? `<a href="${i.link}" target="_blank" rel="noopener noreferrer" class="cyber-link">VIEW PROJECT →</a>` : ''}
             </div>
@@ -215,6 +238,11 @@ function openRoom(room) {
     }
     
     body.innerHTML = html;
+    // Stagger-animate each card in
+    body.querySelectorAll('.anim-card').forEach((el, i) => {
+        el.style.animationDelay = `${i * 60}ms`;
+        el.classList.add('card-enter');
+    });
     panel.classList.remove('hidden');
     awardXP(room);
 }
@@ -245,6 +273,8 @@ function unlockNext(current) {
         const btn = document.getElementById('nav-' + next);
         if (btn) {
             btn.classList.remove('locked-room');
+            btn.classList.add('just-unlocked');
+            setTimeout(() => btn.classList.remove('just-unlocked'), 2000);
             const lock = document.getElementById('lock-' + next);
             if (lock) lock.textContent = '🔓';
         }
@@ -440,7 +470,14 @@ function wireEvents() {
         // Remove floating skill labels
         document.querySelectorAll('.skill-label').forEach(el => el.remove());
         gSkillNodes = [];
-        gRenderer = null;
+        // Properly dispose WebGL context to free GPU memory
+        if (gRenderer) {
+            gRenderer.dispose();
+            gRenderer.forceContextLoss();
+            gRenderer = null;
+            gScene = null;
+            gCamera = null;
+        }
         document.getElementById('game-interface').classList.add('hidden');
         document.getElementById('landing-page').classList.remove('hidden');
         setTimeout(() => document.getElementById('landing-page').style.opacity = '1', 50);
@@ -467,6 +504,7 @@ function wireEvents() {
 
 document.addEventListener('DOMContentLoaded', () => {
     sizeFrameCanvas(); loadFrames(); initLandingThree(); wireEvents(); runLoader(); animateFrames();
+    typeTagline();
 });
 
 window.addEventListener('resize', () => {

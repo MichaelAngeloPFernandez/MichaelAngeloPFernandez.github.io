@@ -135,7 +135,18 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Rajdhani', sans-se
 
 /* Buttons */
 .landing-actions { margin-top: 50px; }
-.cyber-btn { background: transparent; border: 1px solid var(--neon-cyan); color: #fff; padding: 18px 50px; cursor: pointer; font-family: 'Orbitron'; font-weight: 700; font-size: 1.1rem; position: relative; transition: all 0.3s; clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%); }
+.cyber-btn {
+    background: transparent; border: 1px solid var(--neon-cyan); color: #fff;
+    padding: 18px 50px; cursor: pointer; font-family: 'Orbitron'; font-weight: 700;
+    font-size: 1.1rem; position: relative; transition: all 0.3s; overflow: hidden;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+.cyber-btn::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,245,255,0.15), transparent);
+    transform: skewX(-20deg); transition: left 0.5s ease;
+}
+.cyber-btn:hover::after { left: 150%; }
 .cyber-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 30px var(--neon-cyan); }
 .social-strip { display: flex; justify-content: center; gap: 25px; margin-top: 30px; }
 .social-chip { color: var(--neon-cyan); text-decoration: none; font-family: 'Share Tech Mono'; font-size: 0.8rem; border: 1px solid var(--border); padding: 8px 15px; background: rgba(0, 245, 255, 0.05); }
@@ -181,6 +192,14 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Rajdhani', sans-se
 .locked-room { opacity: 0.4; filter: grayscale(1); cursor: not-allowed; }
 .room-lock { position: absolute; top: 5px; right: 5px; font-size: 0.7rem; }
 
+/* Unlock pulse on newly unlocked room buttons */
+@keyframes unlock-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(0,245,255,0.7); border-color: var(--neon-cyan); }
+    50%  { box-shadow: 0 0 0 12px rgba(0,245,255,0); border-color: var(--neon-cyan); }
+    100% { box-shadow: 0 0 0 0 rgba(0,245,255,0); }
+}
+.just-unlocked { animation: unlock-pulse 0.6s ease-out 3; border-color: var(--neon-cyan) !important; }
+
 .room-icon { font-size: 1.8rem; }
 .room-label { font-size: 0.6rem; font-family: 'Orbitron'; margin-top: 8px; letter-spacing: 1px; }
 
@@ -189,13 +208,26 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Rajdhani', sans-se
 .room-panel.hidden { transform: translateX(100%); }
 .panel-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 25px; margin-bottom: 30px; flex-shrink: 0; }
 #panel-title { font-family: 'Orbitron'; color: var(--neon-cyan); font-size: 1.4rem; letter-spacing: 2px; }
-#close-panel { background: transparent; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
+#close-panel { background: transparent; border: 1px solid transparent; color: rgba(255,255,255,0.5); font-size: 1.4rem; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; border-radius: 3px; }
+#close-panel:hover { border-color: var(--neon-pink); color: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); }
+/* WebKit scrollbar for panel body */
 #panel-body { overflow-y: auto; flex: 1; padding-right: 5px; scrollbar-width: thin; scrollbar-color: var(--neon-cyan) transparent; }
+#panel-body::-webkit-scrollbar { width: 4px; }
+#panel-body::-webkit-scrollbar-track { background: transparent; }
+#panel-body::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 2px; }
 
 .info-card { background: rgba(255,255,255,0.03); padding: 20px; margin-bottom: 20px; border-left: 3px solid var(--neon-purple); transition: background 0.3s; }
 .info-card:hover { background: rgba(255,255,255,0.06); }
 .info-card h4 { font-family: 'Orbitron'; font-size: 0.9rem; color: var(--neon-cyan); margin-bottom: 6px; }
 .card-sub { color: var(--neon-purple); font-size: 0.85rem; margin-bottom: 4px; font-weight: 500; }
+.card-date { color: rgba(255,255,255,0.4); font-size: 0.75rem; font-family: 'Share Tech Mono'; margin-bottom: 8px; letter-spacing: 1px; }
+
+/* Card stagger enter animation */
+@keyframes card-enter {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.card-enter { animation: card-enter 0.35s ease forwards; opacity: 0; }
 /* Loader Overhaul */
 
 /* HUD Decorative Elements for Loader */
@@ -261,8 +293,8 @@ div.contact-card { cursor: default; }
 
 .hidden { display: none !important; }
 
-/* Minimap */
-.minimap { position: absolute; bottom: 45px; right: 45px; width: 110px; background: rgba(0,0,0,0.6); border: 1px solid var(--border); padding: 8px; z-index: 110; }
+/* Minimap — raised above nav buttons */
+.minimap { position: absolute; bottom: 165px; right: 45px; width: 110px; background: rgba(0,0,0,0.6); border: 1px solid var(--border); padding: 8px; z-index: 110; }
 .minimap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
 .mm-cell { aspect-ratio: 1; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 0.55rem; color: #444; border: 1px solid transparent; }
 .mm-cell.visited { background: rgba(0,245,255,0.1); color: var(--neon-cyan); border-color: var(--neon-cyan); }
