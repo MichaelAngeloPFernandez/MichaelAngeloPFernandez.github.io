@@ -521,6 +521,19 @@ function wireEvents() {
         STATE.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         STATE.mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
     });
+    // Touch support for parallax on mobile
+    window.addEventListener('touchmove', (e) => {
+        const t = e.touches[0];
+        STATE.mouse.x = (t.clientX / window.innerWidth) * 2 - 1;
+        STATE.mouse.y = (t.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+    // Tap to open rooms on touch devices (touchend fires before click, no double-fire)
+    document.querySelectorAll('.room-btn').forEach(btn => {
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            if (!btn.classList.contains('locked-room')) openRoom(btn.dataset.room);
+        }, { passive: false });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

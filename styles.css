@@ -387,3 +387,169 @@ div.contact-card { cursor: default; }
     10% { opacity: 1; }
     100% { opacity: 0; }
 }
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── Tablet (≤1024px) ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+
+    /* Landing */
+    .glitch { font-size: 3rem; letter-spacing: 3px; }
+    .tagline { font-size: 0.75rem; letter-spacing: 3px; }
+    .landing-actions { margin-top: 35px; }
+
+    /* HUD top */
+    .hud-top { padding: 18px 25px; }
+    .player-info { width: 110px; }
+
+    /* Nav buttons */
+    .room-btn { width: 85px; height: 85px; }
+    .room-icon { font-size: 1.5rem; }
+    .hud-nav { gap: 14px; bottom: 30px; }
+
+    /* Panel */
+    .room-panel { width: 380px; padding: 30px; }
+    #panel-title { font-size: 1.2rem; }
+
+    /* Minimap */
+    .minimap { bottom: 140px; right: 25px; width: 115px; }
+
+    /* Badges */
+    .badges-panel { left: 25px; top: 110px; }
+    .badge-item { width: 34px; height: 34px; font-size: 1.1rem; }
+}
+
+/* ── Small tablet / large phone landscape (≤768px) ─────────── */
+@media (max-width: 768px) {
+
+    /* Landing */
+    .glitch { font-size: 2rem; letter-spacing: 2px; }
+    .tagline { font-size: 0.65rem; letter-spacing: 2px; }
+    .cyber-btn { padding: 14px 35px; font-size: 0.95rem; }
+    .social-strip { gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .social-chip { font-size: 0.7rem; padding: 6px 12px; }
+    .landing-actions { margin-top: 28px; }
+
+    /* Loader */
+    .loader-avatar-img { width: 90px; height: 90px; }
+    .loader-rings { height: 90px; margin-bottom: 20px; }
+    .ring-1 { width: 120px; height: 120px; }
+    .ring-2 { width: 105px; height: 105px; }
+    .ring-3 { width: 90px;  height: 90px;  }
+    .loader-logs { padding: 0 20px; font-size: 0.6rem; }
+    #loader::before, #loader::after { display: none; }
+
+    /* HUD top — tighter */
+    .hud-top { padding: 12px 16px; }
+    .player-avatar { width: 38px; height: 38px; }
+    .player-info { width: 90px; }
+    .player-name { font-size: 0.65rem; }
+    .level-badge { font-size: 0.6rem; padding: 2px 5px; margin-left: 6px; }
+    .hud-stats { gap: 12px; font-size: 0.7rem; }
+    .hud-back-btn { padding: 5px 12px; font-size: 0.6rem; }
+    .hud-stat { font-size: 0.65rem; }
+
+    /* Nav — 2×2 grid instead of a row */
+    .hud-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 32px);
+        max-width: 320px;
+    }
+    .room-btn { width: 100%; height: 70px; }
+    .room-icon { font-size: 1.3rem; }
+    .room-label { font-size: 0.5rem; margin-top: 4px; }
+
+    /* Panel — full width on mobile */
+    .room-panel { width: 100%; border-left: none; border-top: 2px solid var(--neon-cyan); padding: 20px 18px; }
+    #panel-title { font-size: 1rem; }
+    .info-card { padding: 14px; }
+    .cert-link { padding: 10px 14px; gap: 10px; }
+    .contact-card { padding: 14px 16px; gap: 14px; }
+
+    /* Achievement popup — full width */
+    .achievement-popup { width: calc(100% - 32px); padding: 12px 20px; gap: 12px; }
+    .ach-name { font-size: 0.95rem; }
+
+    /* Minimap — smaller, repositioned above nav grid */
+    .minimap { bottom: 210px; right: 16px; width: 100px; }
+    .mm-icon { font-size: 0.75rem; }
+    .minimap-footer { font-size: 0.38rem; }
+
+    /* Badges — move to top-right to avoid nav overlap */
+    .badges-panel {
+        top: auto; bottom: 210px; left: 16px;
+        flex-direction: row; gap: 8px;
+    }
+    .badge-item { width: 30px; height: 30px; font-size: 0.95rem; }
+
+    /* Skill labels — hide on small screens (too cluttered) */
+    .skill-label { display: none; }
+}
+
+/* ── Phone portrait (≤480px) ────────────────────────────────── */
+@media (max-width: 480px) {
+
+    /* Landing title */
+    .glitch { font-size: 1.45rem; letter-spacing: 1px; }
+    .tagline { font-size: 0.55rem; letter-spacing: 1px; }
+    .cyber-btn { padding: 12px 28px; font-size: 0.85rem; }
+    .social-strip { gap: 8px; }
+    .social-chip { font-size: 0.65rem; padding: 5px 10px; }
+
+    /* Loader */
+    .loader-avatar-img { width: 70px; height: 70px; }
+    .loader-rings { height: 70px; margin-bottom: 15px; }
+    .ring-1 { width: 90px; height: 90px; }
+    .ring-2 { width: 78px; height: 78px; }
+    .ring-3 { width: 66px; height: 66px; }
+    .loader-text { font-size: 0.65rem; }
+    .loader-percent { font-size: 0.85rem; }
+
+    /* HUD — hide XP stat to save space */
+    .hud-stat:first-child { display: none; }
+    .hud-stats { gap: 8px; }
+
+    /* Nav grid tighter */
+    .hud-nav { max-width: 280px; gap: 6px; bottom: 12px; }
+    .room-btn { height: 62px; }
+    .room-icon { font-size: 1.1rem; }
+    .room-label { font-size: 0.45rem; }
+
+    /* Panel */
+    .room-panel { padding: 16px 14px; }
+    #panel-title { font-size: 0.9rem; letter-spacing: 1px; }
+    .panel-header { padding-bottom: 16px; margin-bottom: 18px; }
+    .info-card h4 { font-size: 0.8rem; }
+    .card-sub { font-size: 0.75rem; }
+    .cert-text { font-size: 0.75rem; }
+    .contact-value { font-size: 0.85rem; }
+
+    /* Minimap — hide on very small screens, too cramped */
+    .minimap { display: none; }
+
+    /* Badges — smaller row */
+    .badges-panel { bottom: 190px; gap: 6px; }
+    .badge-item { width: 26px; height: 26px; font-size: 0.8rem; }
+
+    /* Achievement popup */
+    .achievement-popup { padding: 10px 14px; gap: 10px; }
+    .ach-icon { font-size: 1.6rem; }
+    .ach-name { font-size: 0.85rem; }
+    .ach-label { font-size: 0.55rem; }
+}
+
+/* ── Touch device: disable hover transforms that feel wrong on tap ── */
+@media (hover: none) {
+    .room-btn:hover:not(.locked-room) { transform: none; box-shadow: none; }
+    a.contact-card:hover { transform: none; box-shadow: none; }
+    .cert-link:hover { transform: none; }
+    .cyber-btn:hover { background: transparent; color: #fff; box-shadow: none; }
+    .social-chip:hover { background: rgba(0,245,255,0.05); color: var(--neon-cyan); box-shadow: none; }
+}
