@@ -192,6 +192,16 @@ function openRoom(room) {
     title.textContent = room.toUpperCase();
     icon.textContent = { education: '🎓', experience: '💼', projects: '🚀', contacts: '📞' }[room];
 
+    // Update minimap active state
+    document.querySelectorAll('.mm-cell').forEach(c => c.classList.remove('active'));
+    const activeCell = document.getElementById('mm-' + room);
+    if (activeCell) activeCell.classList.add('active');
+
+    // Update minimap footer
+    const statusMap = { education: 'EDUCATION', experience: 'EXPERIENCE', projects: 'PROJECTS', contacts: 'CONTACTS' };
+    const mmStatus = document.getElementById('mm-status');
+    if (mmStatus) mmStatus.textContent = '▶ ' + statusMap[room];
+
     let html = '';
     if (room === 'education') {
         html = DATA.education.map(e => `
@@ -256,7 +266,12 @@ function awardXP(room) {
     document.getElementById('badge-count').textContent = STATE.badges;
     document.getElementById('xp-bar').style.width = (STATE.xp / 1000 * 100) + '%';
     if (document.getElementById('badge-' + room)) document.getElementById('badge-' + room).classList.add('unlocked');
-    if (document.getElementById('mm-' + room)) document.getElementById('mm-' + room).classList.add('visited');
+    if (document.getElementById('mm-' + room)) {
+        const cell = document.getElementById('mm-' + room);
+        cell.classList.add('visited');
+        cell.classList.add('flash');
+        setTimeout(() => cell.classList.remove('flash'), 700);
+    }
     if (STATE.xp >= 250) {
         STATE.level = Math.floor(STATE.xp / 250) + 1;
         document.getElementById('player-level').textContent = Math.min(STATE.level, 4);
@@ -484,6 +499,9 @@ function wireEvents() {
     });
     document.getElementById('close-panel').addEventListener('click', () => {
         document.getElementById('room-panel').classList.add('hidden');
+        document.querySelectorAll('.mm-cell').forEach(c => c.classList.remove('active'));
+        const mmStatus = document.getElementById('mm-status');
+        if (mmStatus) mmStatus.textContent = 'EXPLORE TO UNLOCK';
     });
     document.querySelectorAll('.room-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -494,6 +512,9 @@ function wireEvents() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             document.getElementById('room-panel').classList.add('hidden');
+            document.querySelectorAll('.mm-cell').forEach(c => c.classList.remove('active'));
+            const mmStatus = document.getElementById('mm-status');
+            if (mmStatus) mmStatus.textContent = 'EXPLORE TO UNLOCK';
         }
     });
     window.addEventListener('mousemove', (e) => {

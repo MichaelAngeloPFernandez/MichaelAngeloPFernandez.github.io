@@ -127,11 +127,31 @@
 
         <!-- Minimap -->
         <div class="minimap">
+            <div class="minimap-label">MAP</div>
             <div class="minimap-grid">
-                <div class="mm-cell" id="mm-education">EDU</div>
-                <div class="mm-cell" id="mm-experience">EXP</div>
-                <div class="mm-cell" id="mm-projects">PRJ</div>
-                <div class="mm-cell" id="mm-contacts">CON</div>
+                <div class="mm-cell" id="mm-education">
+                    <span class="mm-icon">🎓</span>
+                    <span class="mm-name">EDU</span>
+                    <div class="mm-player" id="mm-player-education"></div>
+                </div>
+                <div class="mm-cell" id="mm-experience">
+                    <span class="mm-icon">💼</span>
+                    <span class="mm-name">EXP</span>
+                    <div class="mm-player" id="mm-player-experience"></div>
+                </div>
+                <div class="mm-cell" id="mm-projects">
+                    <span class="mm-icon">🚀</span>
+                    <span class="mm-name">PRJ</span>
+                    <div class="mm-player" id="mm-player-projects"></div>
+                </div>
+                <div class="mm-cell" id="mm-contacts">
+                    <span class="mm-icon">📞</span>
+                    <span class="mm-name">CON</span>
+                    <div class="mm-player" id="mm-player-contacts"></div>
+                </div>
+            </div>
+            <div class="minimap-footer">
+                <span id="mm-status">EXPLORE TO UNLOCK</span>
             </div>
         </div>
 
