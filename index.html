@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Angelo Fernandez | Cyberpunk Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+        <!-- Decorative HUD corners -->
+        <div class="loader-corner top-left"></div>
+        <div class="loader-corner top-right"></div>
+        <div class="loader-corner bot-left"></div>
+        <div class="loader-corner bot-right"></div>
+
+        <div class="loader-inner">
+            <div class="loader-logo-wrap">
+                <img src="ako.jfif" class="loader-avatar-img" alt="Avatar">
+                <div class="loader-logo-glow"></div>
+            </div>
+
+            <div class="loader-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+            </div>
+
+            <div class="loader-logs" id="loader-logs">
+                <!-- Logs will be injected here by JS -->
+            </div>
+
+            <p class="loader-text" id="loader-text">INITIALIZING SYSTEM...</p>
+            <div class="loader-bar-wrap">
+                <div class="loader-bar-fill" id="loader-bar"></div>
+            </div>
+            <p class="loader-percent" id="loader-percent">0%</p>
+        </div>
+    </div>
+
+    <!-- LANDING PAGE -->
+    <div id="landing-page">
+        <!-- Animated frames as full background -->
+        <canvas id="frame-canvas"></canvas>
+        <!-- Three.js particle overlay -->
+        <canvas id="bg-canvas"></canvas>
+
+        <div class="landing-content">
+            <div class="name-wrap">
+                <h1 class="glitch" data-text="MICHAEL ANGELO FERNANDEZ">MICHAEL ANGELO FERNANDEZ</h1>
+                <p class="tagline">UI/UX DESIGNER &nbsp;|&nbsp; GAME TESTER &nbsp;|&nbsp; IT OPERATIONS</p>
+            </div>
+
+            <div class="landing-actions">
+                <button id="press-start" class="cyber-btn">
+                    <span class="btn-border"></span>
+                    <span class="btn-text">▶ PRESS START</span>
+                    <span class="btn-glow"></span>
+                </button>
+                <div class="social-strip">
+                    <a href="https://github.com/MichaelAngeloPFernandez" target="_blank" rel="noopener noreferrer" class="social-chip">GITHUB</a>
+                    <a href="https://www.linkedin.com/in/michael-angelo-fernandez-05aaa3299/" target="_blank" rel="noopener noreferrer" class="social-chip">LINKEDIN</a>
+                    <a href="mailto:michaelangelofernandez.01082000@gmail.com" class="social-chip">EMAIL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME INTERFACE -->
+    <div id="game-interface" class="hidden">
+        <canvas id="game-canvas"></canvas>
+
+        <!-- HUD TOP -->
+        <div class="hud-top">
+            <div class="hud-player">
+                <div class="player-avatar">
+                    <img src="ako.jfif" alt="User">
+                </div>
+                <div class="player-info">
+                    <span class="player-name">MICHAEL ANGELO</span>
+                    <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xp-bar"></div></div>
+                </div>
+                <div class="level-badge">LV <span id="player-level">1</span></div>
+            </div>
+            <div class="hud-stats">
+                <div class="hud-stat">⭐ <span id="player-xp">0</span> XP</div>
+                <div class="hud-stat">🏆 <span id="badge-count">0</span>/4</div>
+                <button class="hud-back-btn" id="back-to-landing">EXIT</button>
+            </div>
+        </div>
+
+        <!-- HUD NAV -->
+        <div class="hud-nav">
+            <button class="room-btn" data-room="education">
+                <span class="room-icon">🎓</span>
+                <span class="room-label">EDUCATION</span>
+            </button>
+            <button class="room-btn locked-room" data-room="experience" id="nav-experience">
+                <span class="room-icon">💼</span>
+                <span class="room-label">EXPERIENCE</span>
+                <span class="room-lock" id="lock-experience">🔒</span>
+            </button>
+            <button class="room-btn locked-room" data-room="projects" id="nav-projects">
+                <span class="room-icon">🚀</span>
+                <span class="room-label">PROJECTS</span>
+                <span class="room-lock" id="lock-projects">🔒</span>
+            </button>
+            <button class="room-btn locked-room" data-room="contacts" id="nav-contacts">
+                <span class="room-icon">📞</span>
+                <span class="room-label">CONTACTS</span>
+                <span class="room-lock" id="lock-contacts">🔒</span>
+            </button>
+        </div>
+
+        <!-- Minimap -->
+        <div class="minimap">
+            <div class="minimap-grid">
+                <div class="mm-cell" id="mm-education">EDU</div>
+                <div class="mm-cell" id="mm-experience">EXP</div>
+                <div class="mm-cell" id="mm-projects">PRJ</div>
+                <div class="mm-cell" id="mm-contacts">CON</div>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="badges-panel">
+            <div class="badge-item locked" id="badge-education">🎓</div>
+            <div class="badge-item locked" id="badge-experience">💼</div>
+            <div class="badge-item locked" id="badge-projects">🚀</div>
+            <div class="badge-item locked" id="badge-contacts">📞</div>
+        </div>
+    </div>
+
+    <!-- ROOM PANEL -->
+    <div id="room-panel" class="room-panel hidden">
+        <div class="panel-header">
+            <span id="panel-icon">🎓</span>
+            <span id="panel-title">EDUCATION</span>
+            <button id="close-panel">✕</button>
+        </div>
+        <div class="panel-body" id="panel-body"></div>
+    </div>
+
+    <!-- Achievement Popup -->
+    <div id="achievement-popup" class="achievement-popup hidden">
+        <div class="ach-icon" id="ach-icon">🏆</div>
+        <div class="ach-text">
+            <span class="ach-label">ACHIEVEMENT UNLOCKED</span>
+            <span class="ach-name" id="ach-name">Scholar</span>
+        </div>
+    </div>
+
+    <div class="system-flash" id="system-flash"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
