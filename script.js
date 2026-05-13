@@ -11,7 +11,7 @@ const DATA = {
             title: 'BS Information Technology', 
             sub: 'New Era University', 
             date: '2021 – Present', 
-            desc: 'Specializing in UI/UX Design and Full-Stack Development. Capstone: FieldCheck App — a real-time field operations platform.' 
+            desc: 'Specializing in UI/UX Design. Capstone: FieldCheck App — a real-time field operations platform (PM, Frontend & Backend Developer).' 
         }
     ],
     certifications: [
@@ -23,12 +23,12 @@ const DATA = {
     ],
     experience: [
         { title: 'UI/UX Design Lead', sub: 'FieldCheck Project', date: '2023 – 2024', desc: 'Managed end-to-end design flow. Created high-fidelity prototypes for real-time geofencing and offline sync features.' },
-        { title: 'Game Tester / QA', sub: 'Personal & Academic Projects', date: '2022 – Present', desc: 'Regression testing and bug documentation for academic game projects.' }
+        { title: 'Intern - IT Operations', sub: 'Concentrix Philippines', date: '2022 – Present', desc: 'IT support and operations management for enterprise systems and infrastructure.' }
     ],
     projects: [
-        { title: 'FieldCheck App', desc: 'Enterprise field-operations platform with real-time geofencing and MongoDB offline sync.', link: 'https://github.com/MichaelAngeloPFernandez/FieldCheck-App' },
+        { title: 'FieldCheck App', desc: 'Enterprise field-operations platform with real-time geofencing and MongoDB offline sync.', link: 'https://MichaelAngeloPFernandez.github.io' },
         { title: '3D Portfolio', desc: 'Interactive gamified OS environment built with Three.js and GSAP.', link: 'https://github.com/MichaelAngeloPFernandez' },
-        { title: 'GitHub Profile', desc: 'Complete portfolio of academic and professional codebases.', link: 'https://github.com/MichaelAngeloPFernandez/MichaelAngeloPFernandez' }
+        { title: 'Cinema Ticket Reservation App', desc: 'Full-stack cinema booking system with seat selection and payment integration.', link: 'https://github.com/MichaelAngeloPFernandez/Cinema-Ticket-Reservation-App' }
     ],
     contacts: [
         { type: 'EMAIL', value: 'michaelangelofernandez.01082000@gmail.com', link: 'mailto:michaelangelofernandez.01082000@gmail.com', icon: '📧' },
