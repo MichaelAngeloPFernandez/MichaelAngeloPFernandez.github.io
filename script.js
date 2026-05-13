@@ -22,8 +22,8 @@ const DATA = {
         { title: 'NOSQL and DBaaS 101', link: 'https://courses.cognitiveclass.ai/certificates/16302c04c68c4749bc81895410d40ad8' }
     ],
     experience: [
-        { title: 'UI/UX Design Lead', sub: 'FieldCheck Project', date: '2023 – 2024', desc: 'Managed end-to-end design flow. Created high-fidelity prototypes for real-time geofencing and offline sync features.' },
-        { title: 'Intern - IT Operations', sub: 'Concentrix Philippines', date: '2022 – Present', desc: 'IT support and operations management for enterprise systems and infrastructure.' }
+        { title: 'PM', sub: 'FieldCheck Project', date: '2025 – 2026', desc: 'Managed end-to-end design flow. Created high-fidelity prototypes for real-time geofencing and offline sync features.' },
+        { title: 'Intern - IT Operations', sub: 'Concentrix Philippines', date: '2025 – 2026', desc: 'IT support and operations management for enterprise systems and infrastructure.' }
     ],
     projects: [
         { title: 'FieldCheck App', desc: 'Enterprise field-operations platform with real-time geofencing and MongoDB offline sync.', link: 'https://MichaelAngeloPFernandez.github.io' },
