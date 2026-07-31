@@ -67,7 +67,7 @@ const DATA = {
     contacts: [
         { type: 'EMAIL', value: 'michaelangelofernandez.01082000@gmail.com', link: 'mailto:michaelangelofernandez.01082000@gmail.com', icon: '📧' },
         { type: 'PHONE', value: '09556884334', link: 'tel:09556884334', icon: '📱' },
-        { type: 'LINKEDIN', value: 'Michael Angelo Fernandez', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-05aaa3299/', icon: '🔗' },
+        { type: 'LINKEDIN', value: 'Michael Angelo Fernandez', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-6497bb410/', icon: '🔗' },
         { type: 'GITHUB', value: '@MichaelAngeloPFernandez', link: 'https://github.com/MichaelAngeloPFernandez', icon: '💻' },
         { type: 'LOCATION', value: 'Pinugay, Baras Rizal 1970', link: '#', icon: '📍' },
         { type: 'RESUME', value: 'Download PDF', link: 'Michael_Angelo_Fernandez_Resume.pdf', icon: '📄' }
