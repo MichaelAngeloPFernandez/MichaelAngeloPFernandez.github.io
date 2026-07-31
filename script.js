@@ -126,24 +126,6 @@ function animateFrames() {
     currentFrame = (currentFrame + 1) % TOTAL_FRAMES;
     setTimeout(() => requestAnimationFrame(animateFrames), 42);
 }
-
-// ── Typing effect for tagline ────────────────────────────────
-function typeTagline() {
-    const el = document.getElementById('tagline');
-    if (!el) return;
-    const text = 'IT OPERATIONS  |  UI/UX DESIGNER  |  TECH SUPPORT';
-    let i = 0;
-    el.textContent = '';
-    el.style.borderRight = '2px solid var(--neon-cyan)';
-    const iv = setInterval(() => {
-        el.textContent += text[i++];
-        if (i >= text.length) {
-            clearInterval(iv);
-            // Blink cursor then remove it
-            setTimeout(() => { el.style.borderRight = 'none'; }, 2000);
-        }
-    }, 55);
-}
 let landingScene, landingCamera, landingRenderer, landingParticles;
 
 function initLandingThree() {
@@ -665,7 +647,7 @@ function wireEvents() {
 
 document.addEventListener('DOMContentLoaded', () => {
     sizeFrameCanvas(); loadFrames(); initLandingThree(); wireEvents(); runLoader(); animateFrames();
-    typeTagline(); initTerminal();
+    initTerminal();
 });
 
 window.addEventListener('resize', () => {
