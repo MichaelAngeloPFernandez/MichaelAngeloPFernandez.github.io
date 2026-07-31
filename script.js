@@ -26,7 +26,7 @@ const DATA = {
             title: 'Bachelor of Science in Information Technology', 
             sub: 'New Era University', 
             date: '2022 – 2026', 
-            desc: 'Specializing in Information Technology, system analysis, UI/UX design, and database management.' 
+            desc: '' 
         }
     ],
     certifications: [
@@ -70,7 +70,7 @@ const DATA = {
         { type: 'LINKEDIN', value: 'Michael Angelo Fernandez', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-6497bb410/', icon: '🔗' },
         { type: 'GITHUB', value: '@MichaelAngeloPFernandez', link: 'https://github.com/MichaelAngeloPFernandez', icon: '💻' },
         { type: 'LOCATION', value: 'Pinugay, Baras Rizal 1970', link: '#', icon: '📍' },
-        { type: 'RESUME', value: 'Download PDF', link: 'Michael_Angelo_Fernandez_Resume.pdf', icon: '📄' }
+        { type: 'RESUME', value: 'Download PDF', link: 'Michael%20Angelo%20P.%20Fernandez_IT.pdf', icon: '📄' }
     ]
 };
 
@@ -248,7 +248,7 @@ function openRoom(room) {
                 <h4>${escapeHTML(e.title)}</h4>
                 <p class="card-sub">${escapeHTML(e.sub)}</p>
                 <p class="card-date">${escapeHTML(e.date)}</p>
-                <p>${escapeHTML(e.desc)}</p>
+                ${e.desc ? `<p>${escapeHTML(e.desc)}</p>` : ''}
             </div>`).join('');
         html += `<div class="cert-header">VERIFIED CERTIFICATIONS</div>`;
         html += DATA.certifications.map(c => `
