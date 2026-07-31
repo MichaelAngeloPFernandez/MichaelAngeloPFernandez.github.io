@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Michael Angelo Fernandez — UI/UX Designer, Game Tester & IT Operations. Interactive cyberpunk portfolio.">
-    <meta property="og:title" content="Michael Angelo Fernandez | Cyberpunk Portfolio">
-    <meta property="og:description" content="UI/UX Designer · Game Tester · IT Operations — Interactive gamified portfolio.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta name="description" content="Michael Angelo P. Fernandez — IT Operations, UI/UX Designer & Tech Support. Interactive cyberpunk portfolio.">
+    <meta property="og:title" content="Michael Angelo P. Fernandez | Cyberpunk Portfolio">
+    <meta property="og:description" content="IT Operations · UI/UX Designer · Tech Support — Interactive gamified portfolio.">
     <meta property="og:image" content="ako.jfif">
     <meta property="og:type" content="website">
-    <title>Michael Angelo Fernandez | Cyberpunk Portfolio</title>
+    <title>Michael Angelo P. Fernandez | Cyberpunk Portfolio</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +61,7 @@
 
         <div class="landing-content">
             <div class="name-wrap">
-                <h1 class="glitch" data-text="MICHAEL ANGELO FERNANDEZ">MICHAEL ANGELO FERNANDEZ</h1>
+                <h1 class="glitch" data-text="MICHAEL ANGELO P. FERNANDEZ">MICHAEL ANGELO P. FERNANDEZ</h1>
                 <p class="tagline" id="tagline"></p>
             </div>
 
@@ -73,7 +74,7 @@
                 <div class="social-strip">
                     <a href="https://github.com/MichaelAngeloPFernandez" target="_blank" rel="noopener noreferrer" class="social-chip">GITHUB</a>
                     <a href="https://www.linkedin.com/in/michael-angelo-fernandez-05aaa3299/" target="_blank" rel="noopener noreferrer" class="social-chip">LINKEDIN</a>
-                    <a href="mailto:michaelangelofernandez.01082000@gmail.com" class="social-chip">EMAIL</a>
+                    <a href="mailto:michaelangelofernandez.01082000@gmail.com" class="social-chip" target="_blank" rel="noopener noreferrer">EMAIL</a>
                 </div>
             </div>
         </div>
@@ -184,6 +185,27 @@
     </div>
 
     <div class="system-flash" id="system-flash"></div>
+
+    <!-- TERMINAL INTERFACE -->
+    <div id="cyber-terminal" class="cyber-terminal hidden">
+        <div class="terminal-header">
+            <span class="term-title">SYS_TERM // v2.0.1</span>
+            <button id="close-terminal">_</button>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+            <div class="term-line">> INITIALIZING ROOT ACCESS...</div>
+            <div class="term-line">> WAITING FOR INPUT...</div>
+        </div>
+        <div class="terminal-input-wrap">
+            <span class="term-prompt">C:\></span>
+            <input type="text" id="terminal-input" class="term-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+        </div>
+    </div>
+    
+    <!-- Audio Elements -->
+    <audio id="bgm" loop>
+        <source src="data:audio/mp3;base64,//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" type="audio/mpeg">
+    </audio>
 
     <script src="script.js"></script>
 </body>

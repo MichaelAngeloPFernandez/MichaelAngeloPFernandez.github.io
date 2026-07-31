@@ -5,36 +5,71 @@
 
 'use strict';
 
+// ── Utility: XSS Mitigation ─────────────────────────────────
+function escapeHTML(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
+
 const DATA = {
     education: [
         { 
-            title: 'BS Information Technology', 
+            title: 'Bachelor of Science in Information Technology', 
             sub: 'New Era University', 
-            date: '2021 – Present', 
-            desc: 'Specializing in UI/UX Design. Capstone: FieldCheck App — a real-time field operations platform (PM, Frontend & Backend Developer).' 
+            date: '2022 – 2026', 
+            desc: 'Specializing in Information Technology, system analysis, UI/UX design, and database management.' 
         }
     ],
     certifications: [
-        { title: 'Oracle Cloud Infrastructure 2023 AI Certified Foundations', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=D33614317A1563DBE687A89574FA94F57BBD1C8BFA60AA5EE5FF029A344F22EE' },
-        { title: 'Oracle Cloud Data Management 2023 Certified Foundations', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=6AEFC927718C085EA35BDFC1C210740CF08539A3AF43B4A5711C6D3EEC1A2E68' },
-        { title: 'Oracle Cloud Infrastructure 2023 Certified Foundations', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=5E6E16A94080ADEF3BF7E35DC8A16ED253DA9279280F4678DC08CCB3E1B1EE2C' },
+        { title: 'Oracle Cloud Infrastructure 2023 AI Certified Foundations Associate', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=D33614317A1563DBE687A89574FA94F57BBD1C8BFA60AA5EE5FF029A344F22EE' },
+        { title: 'Oracle Cloud Infrastructure 2023 Certified Foundations Associate', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=5E6E16A94080ADEF3BF7E35DC8A16ED253DA9279280F4678DC08CCB3E1B1EE2C' },
+        { title: 'Oracle Cloud Data Management 2023 Certified Foundations Associate', link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=6AEFC927718C085EA35BDFC1C210740CF08539A3AF43B4A5711C6D3EEC1A2E68' },
         { title: 'SQL and Relational Databases 101', link: 'https://courses.cognitiveclass.ai/certificates/588a392f46ea47abba04f1e6c77298f4' },
-        { title: 'NOSQL and DBaaS 101', link: 'https://courses.cognitiveclass.ai/certificates/16302c04c68c4749bc81895410d40ad8' }
+        { title: 'Internet of Things (IoT) Online Course', link: '#' }
     ],
     experience: [
-        { title: 'PM', sub: 'FieldCheck Project', date: '2025 – 2026', desc: 'Managed end-to-end design flow. Created high-fidelity prototypes for real-time geofencing and offline sync features.' },
-        { title: 'Intern - IT Operations', sub: 'Concentrix Philippines', date: '2025 – 2026', desc: 'IT support and operations management for enterprise systems and infrastructure.' }
+        { 
+            title: 'Information Technology Operations Intern (OJT)', 
+            sub: 'Concentrix Philippines', 
+            date: 'Oct 2025 – Apr 2026', 
+            desc: 'Managed IT Asset Inventory (tracked/audited hardware/software assets and life cycles); Provided Tier 1 Technical Support (diagnosed and resolved hardware, software, and network issues); Streamlined Workstation Deployment (prepared/imaged equipment); Supported IT operations & routine audits.' 
+        }
     ],
     projects: [
-        { title: 'FieldCheck App', desc: 'Enterprise field-operations platform with real-time geofencing and MongoDB offline sync.', link: 'https://MichaelAngeloPFernandez.github.io' },
-        { title: '3D Portfolio', desc: 'Interactive gamified OS environment built with Three.js and GSAP.', link: 'https://github.com/MichaelAngeloPFernandez' },
-        { title: 'Cinema Ticket Reservation App', desc: 'Full-stack cinema booking system with seat selection and payment integration.', link: 'https://github.com/MichaelAngeloPFernandez/Cinema-Ticket-Reservation-App' }
+        { 
+            title: 'FieldCheck: Mobile Geofenced Attendance Verification App', 
+            sub: 'Capstone Project',
+            desc: 'Participated in designing and developing a mobile attendance verification system using geofencing. Assisted in requirements analysis, UI/UX design, testing, and documentation.', 
+            link: 'https://github.com/MichaelAngeloPFernandez' 
+        },
+        { 
+            title: 'Velocity Trans. Application', 
+            sub: 'UI/UX Design Project',
+            desc: 'Designed user experience flow and high-fidelity interfaces for a transportation application, focusing on intuitive navigation.', 
+            link: '#' 
+        },
+        { 
+            title: 'Cyber Safety 101: Stay Secure Online', 
+            sub: 'UI/UX Design Project (e-brochure)',
+            desc: 'Created an engaging and educational e-brochure focusing on cybersecurity basics and digital threat prevention.', 
+            link: '#' 
+        }
     ],
     contacts: [
         { type: 'EMAIL', value: 'michaelangelofernandez.01082000@gmail.com', link: 'mailto:michaelangelofernandez.01082000@gmail.com', icon: '📧' },
+        { type: 'PHONE', value: '09556884334', link: 'tel:09556884334', icon: '📱' },
         { type: 'LINKEDIN', value: 'Michael Angelo Fernandez', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-05aaa3299/', icon: '🔗' },
         { type: 'GITHUB', value: '@MichaelAngeloPFernandez', link: 'https://github.com/MichaelAngeloPFernandez', icon: '💻' },
-        { type: 'LOCATION', value: 'Quezon City, PH', link: '#', icon: '📍' },
+        { type: 'LOCATION', value: 'Pinugay, Baras Rizal 1970', link: '#', icon: '📍' },
         { type: 'RESUME', value: 'Download PDF', link: 'Michael_Angelo_Fernandez_Resume.pdf', icon: '📄' }
     ]
 };
@@ -60,17 +95,21 @@ function sizeFrameCanvas() {
 }
 
 function loadFrames() {
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
+    let i = 0;
+    function loadNext() {
+        if (i >= TOTAL_FRAMES) return;
         const idx = String(i).padStart(3, '0');
         const img = new Image();
-        img.onload = () => { frameImages[i] = img; };
+        img.onload = () => { frameImages[i] = img; setTimeout(loadNext, 5); };
         img.onerror = () => {
             const alt = new Image();
             alt.src = `${FRAMES_DIR}frame_${idx}_delay-0.041s.png`;
-            alt.onload = () => { frameImages[i] = alt; };
+            alt.onload = () => { frameImages[i] = alt; setTimeout(loadNext, 5); };
         };
         img.src = `${FRAMES_DIR}frame_${idx}_delay-0.042s.png`;
+        i++;
     }
+    loadNext();
 }
 
 function animateFrames() {
@@ -92,7 +131,7 @@ function animateFrames() {
 function typeTagline() {
     const el = document.getElementById('tagline');
     if (!el) return;
-    const text = 'UI/UX DESIGNER  |  GAME TESTER  |  IT OPERATIONS';
+    const text = 'IT OPERATIONS  |  UI/UX DESIGNER  |  TECH SUPPORT';
     let i = 0;
     el.textContent = '';
     el.style.borderRight = '2px solid var(--neon-cyan)';
@@ -206,30 +245,30 @@ function openRoom(room) {
     if (room === 'education') {
         html = DATA.education.map(e => `
             <div class="info-card anim-card">
-                <h4>${e.title}</h4>
-                <p class="card-sub">${e.sub}</p>
-                <p class="card-date">${e.date}</p>
-                <p>${e.desc}</p>
+                <h4>${escapeHTML(e.title)}</h4>
+                <p class="card-sub">${escapeHTML(e.sub)}</p>
+                <p class="card-date">${escapeHTML(e.date)}</p>
+                <p>${escapeHTML(e.desc)}</p>
             </div>`).join('');
         html += `<div class="cert-header">VERIFIED CERTIFICATIONS</div>`;
         html += DATA.certifications.map(c => `
-            <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="cert-link anim-card">
+            <a href="${escapeHTML(c.link)}" target="_blank" rel="noopener noreferrer" class="cert-link anim-card">
                 <span class="cert-icon">📜</span>
-                <span class="cert-text">${c.title}</span>
+                <span class="cert-text">${escapeHTML(c.title)}</span>
                 <span class="cert-arrow">→</span>
             </a>
         `).join('');
     } else if (room === 'contacts') {
         html = DATA.contacts.map(c => {
             const isLink = c.link && c.link !== '#';
-            const tag = isLink ? `a href="${c.link}" target="_blank" rel="noopener noreferrer"` : 'div';
+            const tag = isLink ? `a href="${escapeHTML(c.link)}" target="_blank" rel="noopener noreferrer"` : 'div';
             const closeTag = isLink ? 'a' : 'div';
             return `
             <${tag} class="contact-card anim-card">
-                <div class="contact-icon">${c.icon}</div>
+                <div class="contact-icon">${escapeHTML(c.icon)}</div>
                 <div class="contact-info">
-                    <div class="contact-type">${c.type}</div>
-                    <div class="contact-value">${c.value}</div>
+                    <div class="contact-type">${escapeHTML(c.type)}</div>
+                    <div class="contact-value">${escapeHTML(c.value)}</div>
                 </div>
             </${closeTag}>
         `;
@@ -238,11 +277,11 @@ function openRoom(room) {
         const items = DATA[room] || [];
         html = items.map(i => `
             <div class="info-card anim-card">
-                <h4>${i.title}</h4>
-                ${i.sub ? `<p class="card-sub">${i.sub}</p>` : ''}
-                ${i.date ? `<p class="card-date">${i.date}</p>` : ''}
-                <p>${i.desc}</p>
-                ${i.link ? `<a href="${i.link}" target="_blank" rel="noopener noreferrer" class="cyber-link">VIEW PROJECT →</a>` : ''}
+                <h4>${escapeHTML(i.title)}</h4>
+                ${i.sub ? `<p class="card-sub">${escapeHTML(i.sub)}</p>` : ''}
+                ${i.date ? `<p class="card-date">${escapeHTML(i.date)}</p>` : ''}
+                <p>${escapeHTML(i.desc)}</p>
+                ${i.link ? `<a href="${escapeHTML(i.link)}" target="_blank" rel="noopener noreferrer" class="cyber-link">VIEW PROJECT →</a>` : ''}
             </div>
         `).join('');
     }
@@ -325,19 +364,19 @@ function enterGame() {
 // different angle so they fan out like a gyroscope.
 const SKILL_RINGS = [
     {
-        skills: ['UI/UX', 'Figma', 'Prototyping', 'Wireframing'],
+        skills: ['UI/UX Design', 'Figma', 'MS Office', 'Digital Doc.'],
         radius: 6, speed: 0.004, tiltX: 0.3, tiltZ: 0.1,
         color: 0x00f5ff   // cyan  — design skills
     },
     {
-        skills: ['HTML', 'CSS', 'JavaScript', 'Three.js'],
+        skills: ['Hardware Support', 'Software Support', 'Troubleshooting', 'Asset Mgmt.'],
         radius: 8.5, speed: -0.003, tiltX: 1.1, tiltZ: 0.4,
-        color: 0xb44fff   // purple — frontend skills
+        color: 0xb44fff   // purple — IT support/ops
     },
     {
-        skills: ['MongoDB', 'Node.js', 'Git', 'QA Testing'],
+        skills: ['Networking', 'SQL & Databases', 'Git', 'IoT Systems'],
         radius: 11, speed: 0.0025, tiltX: 0.6, tiltZ: 1.0,
-        color: 0xff2d78   // pink   — backend / tools
+        color: 0xff2d78   // pink   — infrastructure/data
     }
 ];
 
@@ -477,6 +516,93 @@ function initGameThree() {
     animate();
 }
 
+// ── Terminal Interface Logic ─────────────────────────────────
+function initTerminal() {
+    const term = document.getElementById('cyber-terminal');
+    const closeBtn = document.getElementById('close-terminal');
+    const input = document.getElementById('terminal-input');
+    const body = document.getElementById('terminal-body');
+    const bgm = document.getElementById('bgm');
+
+    if (!term) return;
+
+    function printLine(text, isInput = false) {
+        const line = document.createElement('div');
+        line.className = 'term-line';
+        line.textContent = isInput ? `C:\\> ${text}` : `> ${text}`;
+        body.appendChild(line);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function processCommand(cmd) {
+        const args = cmd.trim().toLowerCase().split(' ');
+        const mainCmd = args[0];
+
+        switch(mainCmd) {
+            case 'help':
+                printLine('AVAILABLE COMMANDS:');
+                printLine('  help   - Show this message');
+                printLine('  clear  - Clear terminal screen');
+                printLine('  audio  - Toggle background music (audio on/off)');
+                printLine('  whoami - Display user info');
+                printLine('  exit   - Close terminal');
+                break;
+            case 'clear':
+                body.innerHTML = '';
+                break;
+            case 'audio':
+                if (!bgm) {
+                    printLine('ERROR: Audio module offline.');
+                    break;
+                }
+                if (args[1] === 'on' || args[1] === 'play') {
+                    bgm.play().then(() => printLine('Audio playback started.')).catch(e => printLine('Audio playback blocked by browser.'));
+                } else if (args[1] === 'off' || args[1] === 'stop') {
+                    bgm.pause();
+                    printLine('Audio playback stopped.');
+                } else {
+                    printLine('Usage: audio [on|off]');
+                }
+                break;
+            case 'whoami':
+                printLine('MICHAEL ANGELO P. FERNANDEZ');
+                printLine('ROLE: IT OPERATIONS | UI/UX DESIGNER | TECH SUPPORT');
+                break;
+            case 'exit':
+                term.classList.add('hidden');
+                break;
+            case '':
+                break;
+            default:
+                printLine(`Command not found: ${mainCmd}`);
+        }
+    }
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const val = input.value;
+            printLine(val, true);
+            processCommand(val);
+            input.value = '';
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        term.classList.add('hidden');
+    });
+
+    // Toggle terminal with tilde/backtick
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '`' || e.key === '~') {
+            e.preventDefault();
+            term.classList.toggle('hidden');
+            if (!term.classList.contains('hidden')) {
+                input.focus();
+            }
+        }
+    });
+}
+
 function wireEvents() {
     document.getElementById('press-start').addEventListener('click', enterGame);
     document.getElementById('back-to-landing').addEventListener('click', () => {
@@ -538,7 +664,7 @@ function wireEvents() {
 
 document.addEventListener('DOMContentLoaded', () => {
     sizeFrameCanvas(); loadFrames(); initLandingThree(); wireEvents(); runLoader(); animateFrames();
-    typeTagline();
+    typeTagline(); initTerminal();
 });
 
 window.addEventListener('resize', () => {
