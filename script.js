@@ -67,7 +67,7 @@ const DATA = {
     contacts: [
         { type: 'EMAIL', value: 'michaelangelofernandez.01082000@gmail.com', link: 'mailto:michaelangelofernandez.01082000@gmail.com', icon: '📧' },
         { type: 'PHONE', value: '09556884334', link: 'tel:09556884334', icon: '📱' },
-        { type: 'LINKEDIN', value: 'Michael Angelo Fernandez', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-6497bb410/', icon: '🔗' },
+        { type: 'LINKEDIN', value: 'linkedin.com/in/michael-angelo-fernandez-6497bb410/', link: 'https://www.linkedin.com/in/michael-angelo-fernandez-6497bb410/', icon: '🔗' },
         { type: 'GITHUB', value: '@MichaelAngeloPFernandez', link: 'https://github.com/MichaelAngeloPFernandez', icon: '💻' },
         { type: 'LOCATION', value: 'Pinugay, Baras Rizal 1970', link: '#', icon: '📍' },
         { type: 'RESUME', value: 'Download PDF', link: 'Michael%20Angelo%20P.%20Fernandez_IT.pdf', icon: '📄' }
@@ -261,7 +261,8 @@ function openRoom(room) {
     } else if (room === 'contacts') {
         html = DATA.contacts.map(c => {
             const isLink = c.link && c.link !== '#';
-            const tag = isLink ? `a href="${escapeHTML(c.link)}" target="_blank" rel="noopener noreferrer"` : 'div';
+            const isResume = c.type === 'RESUME';
+            const tag = isLink ? `a href="${escapeHTML(c.link)}" target="_blank" rel="noopener noreferrer"${isResume ? ' download' : ''}` : 'div';
             const closeTag = isLink ? 'a' : 'div';
             return `
             <${tag} class="contact-card anim-card">
