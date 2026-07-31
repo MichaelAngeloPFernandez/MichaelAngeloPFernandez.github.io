@@ -62,6 +62,24 @@ const DATA = {
             sub: 'UI/UX Design Project (e-brochure)',
             desc: 'Created an engaging and educational e-brochure focusing on cybersecurity basics and digital threat prevention.', 
             link: '#' 
+        },
+        {
+            title: 'Cinema Ticket Reservation App',
+            sub: 'Full-Stack Application',
+            desc: 'Full-stack cinema booking system featuring interactive seat selection, booking workflows, and ticketing management.',
+            link: 'https://github.com/MichaelAngeloPFernandez/Cinema-Ticket-Reservation-App'
+        },
+        {
+            title: 'Food Order GPS Location System',
+            sub: 'Geolocation Project',
+            desc: 'Custom order-based GPS location system built to track delivery coordinates and optimize field route verification.',
+            link: 'https://github.com/MichaelAngeloPFernandez/food-order-gps'
+        },
+        {
+            title: '3D Gaming Portfolio',
+            sub: 'WebGL Project',
+            desc: 'Interactive game-themed 3D portfolio environment designed to host playable web games and showcase responsive visual assets.',
+            link: 'https://github.com/MichaelAngeloPFernandez/gaming-portfolio-3d'
         }
     ],
     contacts: [
